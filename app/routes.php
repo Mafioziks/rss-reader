@@ -6,6 +6,7 @@ use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\Authorize\LoginAction;
 use App\Application\Actions\Authorize\LogoutAction;
 use App\Application\Actions\Authorize\RegisterAction;
+use App\Application\Actions\Authorize\EmailValidationAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -23,6 +24,7 @@ return function (App $app) {
     });
 
     $app->group('/authorize', function (Group $group) {
+        $group->get('/validate/email', EmailValidationAction::class);
         $group->get('/register', RegisterAction::class);
         $group->get('/logout', LogoutAction::class);
         $group->get('/login', LoginAction::class);

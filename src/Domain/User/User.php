@@ -44,12 +44,12 @@ class User implements JsonSerializable
      * @param string    $lastName
      */
     public function __construct(
-        ?int $id = null,
-        ?string $username = null,
+        ?int $id           = null,
+        ?string $username  = null,
         ?string $firstName = null,
-        ?string $lastName = null,
-        ?string $email = null,
-        ?string $password = null
+        ?string $lastName  = null,
+        ?string $email     = null,
+        ?string $password  = null
     ) {
         $this->id         = $id;
         $this->username   = null === $username ? null : strtolower($username);
@@ -123,12 +123,12 @@ class User implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'id' => $this->id,
-            'username' => $this->username,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'password' => $this->password,
+            'id'        => $this->id,
+            'username'  => $this->username,
+            'firstName' => $this->first_name,
+            'lastName'  => $this->last_name,
+            'email'     => $this->email,
+            'password'  => $this->password,
         ];
     }
 }

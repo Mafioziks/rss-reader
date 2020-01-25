@@ -97,4 +97,17 @@ class Repository extends Base implements UserRepository
 
         return null;
     }
+
+    /**
+     * @param string $email
+     * 
+     * @return bool
+     */
+    public function emailTaken(string $email): bool
+    {
+        $statement = $this->connection->prepare('SELECT email FROM users WHERE email = :email');
+        $statement->execute(['email' => $email]);
+
+        return count($statement->fetchAll()) > 0;
+    }
 }

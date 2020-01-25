@@ -24,4 +24,11 @@ interface UserRepository
      * @return null|User
      */
     public function findAuthorized(string $email, string $password): ?User;
+
+    /**
+     * @param string $email
+     * 
+     * @return bool
+     */
+    public function emailTaken(string $email): bool;
 }
