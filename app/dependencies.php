@@ -24,5 +24,19 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
+        PDO::class => function (ContainerInterface $container) {
+            $db_settings = $container->get('settings')['db'];
+
+            $dns = sprintf(
+                '%s:host=%s;port=%s;dbname=%s;charset=%s',
+                $db_settings['driver'],
+                $db_settings['host'],
+                $db_settings['port'],
+                $db_settings['name'],
+                $db_settings['charset'],
+            );
+
+            return new PDO($dns, $db_settings['user'], $db_settings['password'], $db_settings['flags']);
+        },
     ]);
 };
